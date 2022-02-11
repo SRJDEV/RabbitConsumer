@@ -56,7 +56,7 @@ public class MessageConsumerServiceImp implements MessageConsumerService {
 	ModelMapper modelMapper;
 
 	@Override
-	public ResponseEntity<String> consumeNewOrder(String token, ProducerMessageDTO newOrder) {
+	public ResponseEntity<String> consumeJsonOrder(String token, ProducerMessageDTO newOrder) {
 
 		ConsumerMessageEntity entity = this.modelMapper.map(newOrder, ConsumerMessageEntity.class);
 
@@ -69,7 +69,7 @@ public class MessageConsumerServiceImp implements MessageConsumerService {
 	}
 
 	@Override
-	public ResponseEntity<String> consumeNewXMLOrder(String token, FulfillmentOrder newOrder) {
+	public ResponseEntity<String> consumeXMLOrder(String token, FulfillmentOrder newOrder) {
 
 		FulfilmentOrderEntity entity = this.modelMapper.map(newOrder, FulfilmentOrderEntity.class);
 
@@ -120,7 +120,7 @@ public class MessageConsumerServiceImp implements MessageConsumerService {
 
 		entity = repoXML.save(entity);
 
-		return new ResponseEntity<>("Successfully Consumed", HttpStatus.OK);
+		return new ResponseEntity<String>("Successfully Consumed", HttpStatus.OK);
 	}
 
 }

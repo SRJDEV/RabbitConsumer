@@ -3,13 +3,21 @@ package com.zensar.entity;
 
 import javax.persistence.*;
 
+import com.zensar.dto.OrderStatus;
+
 @Entity
 @Table(name="MessageTable")
 public class ConsumerMessageEntity {
 
 	@Id
 	@Column(name = "MessageID")
-	private String messageId;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int messageId;
+	
+	
+	@Enumerated(value = EnumType.STRING)
+	@Column(name = "OrderStatus")
+	private OrderStatus orderStatus = OrderStatus.CREATED;
 	
 	@Column(name= "MessageName")
 	private String messageName;
@@ -38,29 +46,17 @@ public class ConsumerMessageEntity {
 	private String pickType;
 	@Column(name= "UPCList")
 	private String upcList;
-	public ConsumerMessageEntity(String messageName, String command, String itemName, String itemDescription,
-			double itemLength, double itemWidth, double itemHeight, double itemWeight, String imagePathname,
-			String rfidTagged, int storageAttribute, String pickType, String upcList) {
-		super();
-		this.messageName = messageName;
-		this.command = command;
-		this.itemName = itemName;
-		this.itemDescription = itemDescription;
-		this.itemLength = itemLength;
-		this.itemWidth = itemWidth;
-		this.itemHeight = itemHeight;
-		this.itemWeight = itemWeight;
-		this.imagePathname = imagePathname;
-		this.rfidTagged = rfidTagged;
-		this.storageAttribute = storageAttribute;
-		this.pickType = pickType;
-		this.upcList = upcList;
-	}
-	public ConsumerMessageEntity(String messageId, String messageName, String command, String itemName,
+	
+	
+	
+	
+	
+	
+	public ConsumerMessageEntity(OrderStatus orderStatus, String messageName, String command, String itemName,
 			String itemDescription, double itemLength, double itemWidth, double itemHeight, double itemWeight,
 			String imagePathname, String rfidTagged, int storageAttribute, String pickType, String upcList) {
 		super();
-		this.messageId = messageId;
+		this.orderStatus = orderStatus;
 		this.messageName = messageName;
 		this.command = command;
 		this.itemName = itemName;
@@ -75,14 +71,49 @@ public class ConsumerMessageEntity {
 		this.pickType = pickType;
 		this.upcList = upcList;
 	}
+	public ConsumerMessageEntity(int messageId, OrderStatus orderStatus, String messageName, String command,
+			String itemName, String itemDescription, double itemLength, double itemWidth, double itemHeight,
+			double itemWeight, String imagePathname, String rfidTagged, int storageAttribute, String pickType,
+			String upcList) {
+		super();
+		
+		this.orderStatus = orderStatus;
+		this.messageName = messageName;
+		this.command = command;
+		this.itemName = itemName;
+		this.itemDescription = itemDescription;
+		this.itemLength = itemLength;
+		this.itemWidth = itemWidth;
+		this.itemHeight = itemHeight;
+		this.itemWeight = itemWeight;
+		this.imagePathname = imagePathname;
+		this.rfidTagged = rfidTagged;
+		this.storageAttribute = storageAttribute;
+		this.pickType = pickType;
+		this.upcList = upcList;
+	}
+	
+	
+	
+	
 	public ConsumerMessageEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getMessageId() {
+	
+	
+	
+	
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+	public int getMessageId() {
 		return messageId;
 	}
-	public void setMessageId(String messageId) {
+	public void setMessageId(int messageId) {
 		this.messageId = messageId;
 	}
 	public String getMessageName() {

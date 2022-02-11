@@ -4,11 +4,14 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.zensar.dto.Address;
 import com.zensar.dto.Name;
+import com.zensar.dto.OrderStatus;
 
 @Entity
 @Table(name = "Xml_MasterTable")
@@ -48,8 +51,11 @@ public class FulfilmentOrderEntity {
 	@Column(name = "sellZLLocationNbr")
 	private int sellZLLocationNbr;
 
-	@Column(name = "orderStatusStr")
-	private String orderStatusStr;
+
+	@Enumerated(value = EnumType.STRING)
+	@Column(name = "OrderStatus")
+	private OrderStatus orderStatus = OrderStatus.CREATED;
+	
 
 	// source
 	@Column(name = "clientID")
@@ -106,13 +112,7 @@ public class FulfilmentOrderEntity {
 		this.orderStatusDescription = orderStatusDescription;
 	}
 
-	public String getOrderStatusStr() {
-		return orderStatusStr;
-	}
 
-	public void setOrderStatusStr(String orderStatusStr) {
-		this.orderStatusStr = orderStatusStr;
-	}
 
 	public int getOrderID() {
 		return orderID;
@@ -174,13 +174,7 @@ public class FulfilmentOrderEntity {
 		this.sellZLLocationNbr = sellZLLocationNbr;
 	}
 
-	public String getorderStatusStr() {
-		return orderStatusStr;
-	}
 
-	public void setorderStatusStr(String orderStatusStr) {
-		this.orderStatusStr = orderStatusStr;
-	}
 
 	public String getClientID() {
 		return clientID;
@@ -226,7 +220,7 @@ public class FulfilmentOrderEntity {
 
 	public FulfilmentOrderEntity(int orderID, int sourceId, BigInteger custID, String orderTypeCode,
 			String partnerOrderID, String messageCreateTimeStamp, String fulfillmentChannelCode, int orderStatusCode,
-			String orderStatusDescription, int sellZLDivisionNbr, int sellZLLocationNbr, String orderStatusStr,
+			String orderStatusDescription, int sellZLDivisionNbr, int sellZLLocationNbr, OrderStatus orderStatus,
 			String clientID, double totalPurchaseAmount, int separatorOrderTotals0) {
 		super();
 		this.orderID = orderID;
@@ -240,7 +234,7 @@ public class FulfilmentOrderEntity {
 		this.orderStatusDescription = orderStatusDescription;
 		this.sellZLDivisionNbr = sellZLDivisionNbr;
 		this.sellZLLocationNbr = sellZLLocationNbr;
-		this.orderStatusStr = orderStatusStr;
+		this.orderStatus = orderStatus;
 		this.clientID = clientID;
 		this.totalPurchaseAmount = totalPurchaseAmount;
 		this.separatorOrderTotals0 = separatorOrderTotals0;
@@ -253,17 +247,43 @@ public class FulfilmentOrderEntity {
 
 
 
-	@Override
-	public String toString() {
-		return "FulfilmentOrderEntity [orderID=" + orderID + ", sourceId=" + sourceId + ", custID=" + custID
-				+ ", orderTypeCode=" + orderTypeCode + ", partnerOrderID=" + partnerOrderID
-				+ ", messageCreateTimeStamp=" + messageCreateTimeStamp + ", fulfillmentChannelCode="
-				+ fulfillmentChannelCode + ", orderStatusCode=" + orderStatusCode + ", orderStatusDescription="
-				+ orderStatusDescription + ", sellZLDivisionNbr=" + sellZLDivisionNbr + ", sellZLLocationNbr="
-				+ sellZLLocationNbr + ", orderStatusStr=" + orderStatusStr + ", clientID=" + clientID
-				+ ", totalPurchaseAmount=" + totalPurchaseAmount + ", separatorOrderTotals0=" + separatorOrderTotals0
-				+ "]";
+	public FulfilmentOrderEntity(int sourceId, BigInteger custID, String orderTypeCode, String partnerOrderID,
+			String messageCreateTimeStamp, String fulfillmentChannelCode, int orderStatusCode,
+			String orderStatusDescription, int sellZLDivisionNbr, int sellZLLocationNbr, OrderStatus orderStatus,
+			String clientID, double totalPurchaseAmount, int separatorOrderTotals0) {
+		super();
+		this.sourceId = sourceId;
+		this.custID = custID;
+		this.orderTypeCode = orderTypeCode;
+		this.partnerOrderID = partnerOrderID;
+		this.messageCreateTimeStamp = messageCreateTimeStamp;
+		this.fulfillmentChannelCode = fulfillmentChannelCode;
+		this.orderStatusCode = orderStatusCode;
+		this.orderStatusDescription = orderStatusDescription;
+		this.sellZLDivisionNbr = sellZLDivisionNbr;
+		this.sellZLLocationNbr = sellZLLocationNbr;
+		this.orderStatus = orderStatus;
+		this.clientID = clientID;
+		this.totalPurchaseAmount = totalPurchaseAmount;
+		this.separatorOrderTotals0 = separatorOrderTotals0;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

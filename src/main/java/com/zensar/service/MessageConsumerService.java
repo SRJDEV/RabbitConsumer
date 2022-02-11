@@ -9,7 +9,7 @@ import com.zensar.dto.ProducerMessageDTO;
 public interface MessageConsumerService {
 
 	
-	public ResponseEntity<String> consumeNewOrder(String token,@RequestBody ProducerMessageDTO newOrder);
+	public ResponseEntity<String> consumeJsonOrder(String token,@RequestBody ProducerMessageDTO newOrder);
 	
-	public ResponseEntity<String> consumeNewXMLOrder(String token,@RequestBody FulfillmentOrder newOrder);
+	public ResponseEntity<String> consumeXMLOrder(String token,@RequestBody FulfillmentOrder newOrder);
 }

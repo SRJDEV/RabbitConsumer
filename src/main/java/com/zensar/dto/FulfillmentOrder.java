@@ -13,11 +13,8 @@ public class FulfillmentOrder implements Serializable {
 
     private int sourceId;
     
-   private String orderStatusStr;
    
-
-
-
+  
    private double totalPurchaseAmount;
    
    private int separatorOrderTotals0;
@@ -29,7 +26,7 @@ public class FulfillmentOrder implements Serializable {
     private String partnerOrderID;
 
     @JacksonXmlProperty(namespace = "ns0",localName = "orderStatus")
-    private OrderStatus orderStatus = OrderStatus.CREATED;
+    private OrderStatus orderStatus ;//= OrderStatus.CREATED;
 
     @JacksonXmlProperty(namespace = "ns0",localName = "messageCreateTimeStamp")
     private String messageCreateTimeStamp;
@@ -63,22 +60,11 @@ public class FulfillmentOrder implements Serializable {
 
 
 
-	public String getOrderStatusStr() {
-		return orderStatusStr;
-	}
-
-
-
-	public void setOrderStatusStr(String orderStatusStr) {
-		this.orderStatusStr = orderStatusStr;
-	}
 
 
 
 
-
-
-	public FulfillmentOrder(int orderID, int sourceId, String orderStatusStr, double totalPurchaseAmount,
+	public FulfillmentOrder(int orderID, int sourceId, double totalPurchaseAmount,
 			int separatorOrderTotals0, String orderTypeCode, String partnerOrderID, OrderStatus orderStatus,
 			String messageCreateTimeStamp, String fulfillmentChannelCode, int orderStatusCode,
 			String orderStatusDescription, int sellZLDivisionNbr, int sellZLLocationNbr, Source source,
@@ -86,7 +72,6 @@ public class FulfillmentOrder implements Serializable {
 		super();
 		this.orderID = orderID;
 		this.sourceId = sourceId;
-		this.orderStatusStr = orderStatusStr;
 		this.totalPurchaseAmount = totalPurchaseAmount;
 		this.separatorOrderTotals0 = separatorOrderTotals0;
 		this.orderTypeCode = orderTypeCode;
@@ -243,7 +228,7 @@ public class FulfillmentOrder implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FulfillmentOrder [orderID=" + orderID + ", sourceId=" + sourceId + ", orderStatusStr=" + orderStatusStr
+		return "FulfillmentOrder [orderID=" + orderID + ", sourceId=" + sourceId + ","
 				+ ", orderTypeCode=" + orderTypeCode + ", partnerOrderID=" + partnerOrderID + ", orderStatus="
 				+ orderStatus + ", messageCreateTimeStamp=" + messageCreateTimeStamp + ", fulfillmentChannelCode="
 				+ fulfillmentChannelCode + ", orderStatusCode=" + orderStatusCode + ", orderStatusDescription="
